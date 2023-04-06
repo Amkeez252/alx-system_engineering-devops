@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This a script for Debugging container Nginx HTTP
+sudo ufw allow 'Nginx HTTP'
+sudo rm -rf /etc/nginx/sites-enabled/*
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/                                  
+sudo service nginx restart
