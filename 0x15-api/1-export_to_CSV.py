@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Created by Amkeez 
-
-@Author: Auwal Abdulmalik
+Created Amkeez @Auwal Abdulmalik
+DataAPI module
 """
 from requests import get
 from sys import argv
@@ -22,4 +21,4 @@ if __name__ == '__main__':
         for task in tasks:
             file.write('"{}","{}","{}","{}"\n'
                        .format(user_id, username, task.get('completed'),
-                               task.get('title'))))
+                               task.get('title')))
