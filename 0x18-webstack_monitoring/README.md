@@ -42,9 +42,8 @@ Server monitoring: getting data about your virtual or physical server and making
 ## Tasks
 0. Sign up for Datadog and install datadog-agent
 For this task head to https://www.datadoghq.com/ and sign up for a free Datadog account. When signing up, you’ll have the option of selecting statistics from your current stack that Datadog can monitor for you. Once you have an account set up, follow the instructions given on the website to install the Datadog agent.
-![](image1.png) ![](image2.png)
 
-![](image3.png) ![](image4.png)
+![](image1.png)
 
 * Sign up for Datadog - **Please make sure you are using the US website of Datagog (.com)**
 * Install datadog-agent on web-01
