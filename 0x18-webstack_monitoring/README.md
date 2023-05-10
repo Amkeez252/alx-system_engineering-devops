@@ -4,9 +4,10 @@ SysAdmin
 monitoring**
 
 ## Concepts
-For this project, we expect you to look at these concepts:
-[Monitoring](https://intranet.alxswe.com/concepts/13)
-[Server](https://intranet.alxswe.com/concepts/67)
+For this project, we expect you to look at these concepts
+
+* [Monitoring](https://intranet.alxswe.com/concepts/13)
+* [Server](https://intranet.alxswe.com/concepts/67)
 
 ![](hb3pAsO.png)
 
@@ -21,7 +22,7 @@ Server monitoring: getting data about your virtual or physical server and making
 ![](ktCXnhE.jpg)
 
 ### Resources
-**Read or watch:**
+**Read or watch**
 [What is server monitoring](https://www.sumologic.com/glossary/server-monitoring/)
 [What is application monitoring](https://en.wikipedia.org/wiki/Application_performance_management)
 [System monitoring by Google](https://sre.google/sre-book/monitoring-distributed-systems/)
