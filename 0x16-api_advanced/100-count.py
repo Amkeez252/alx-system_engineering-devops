@@ -5,55 +5,47 @@
 import requests
 
 
-def count_words(subreddit, word_list, count_list=[], next_page=None):
-    """Request subreddit recursively using pagination
+def count_words(subreddit, word_list, instances={}, after="", count=0):
+    """a recursive function that queries the Reddit API,
+    parses the title of all hot articles, and prints a sorted count
     """
-    # convert word_list to dict with count
-    if not count_list:
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    }
+    params = {
+        "after": after,
+        "count": count,
+        "limit": 100
+    }
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+    try:
+        results = response.json()
+        if response.status_code == 404:
+            raise Exception
+    except Exception:
+        print("")
+        return
+
+    results = results.get("data")
+    after = results.get("after")
+    count += results.get("dist")
+    for c in results.get("children"):
+        title = c.get("data").get("title").lower().split()
         for word in word_list:
-            count_list.append(dict({'keyword': word,
-                                    'count': 0}))
+            if word.lower() in title:
+                times = len([t for t in title if t == word.lower()])
+                if instances.get(word) is None:
+                    instances[word] = times
+                else:
+                    instances[word] += times
 
-    # NETWORKING
-    # set custom user-agent
-    user_agent = '0x16-api_advanced-jmajetich'
-    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
-    # if page specified, pass as parameter
-    if next_page:
-        url += '?after={}'.format(next_page)
-
-    headers = {'User-Agent': user_agent}
-
-    r = requests.get(url, headers=headers, allow_redirects=False)
-
-    if r.status_code != 200:
-        return
-
-    # DATA PARSING
-    # load response unit from json
-    data = r.json()['data']
-
-    # extract list of pages
-    posts = data['children']
-    for post in posts:
-        title = post['data']['title']
-        for item in count_list:
-            title_lower = title.lower()
-            title_list = title_lower.split()
-            item['count'] += title_list.count(item['keyword'].lower())
-
-    next_page = data['after']
-    if next_page is not None:
-        return count_words(subreddit, word_list, count_list, next_page)
+    if after is None:
+        if len(instances) == 0:
+            print("")
+            return
+        instances = sorted(instances.items(), key=lambda kv: (-kv[1], kv[0]))
+        [print("{}: {}".format(k, v)) for k, v in instances]
     else:
-        # sort list by count
-        sorted_list = sorted(count_list,
-                             key=lambda word: (word['count'], word['keyword']),
-                             reverse=True)
-        keywords_matched = 0
-        # print keywords and counts
-        for word in sorted_list:
-            if word['count'] > 0:
-                print('{}: {}'.format(word['keyword'], word['count']))
-                keywords_matched += 1
-        return
+        count_words(subreddit, word_list, instances, after, count)
