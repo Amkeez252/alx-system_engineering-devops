@@ -21,7 +21,7 @@ Server monitoring: getting data about your virtual or physical server and making
 
 ![](ktCXnhE.jpg)
 
-### Resources
+### Resources:books:
 **Read or watch**
 * [What is server monitoring](https://www.sumologic.com/glossary/server-monitoring/)
 * [What is application monitoring](https://en.wikipedia.org/wiki/Application_performance_management)
