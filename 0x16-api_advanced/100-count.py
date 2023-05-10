@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Count keywords case-insensitive, delimited by spaces"""
+""" Count keywords """
 import requests
 
 def count_words(subreddit, word_list, hot_list=[], after=None, word_counts={}):
