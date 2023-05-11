@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
-"""
-function that queries the Reddit API and 
-Returns the number of subscribers
-"""
+""" Api advanced """
 import requests
 
 
